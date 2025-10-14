@@ -38,6 +38,9 @@ def utcnow_iso() -> str:
 
 def ensure_column(conn: sqlite3.Connection, table: str, column: str, ddl: str) -> None:
     info = conn.execute(f"PRAGMA table_info({table})").fetchall()
+    if not info:
+        # Table does not exist yet; let the CREATE statement initialize it.
+        return
     if not any(row[1] == column for row in info):
         conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {ddl}")
 
