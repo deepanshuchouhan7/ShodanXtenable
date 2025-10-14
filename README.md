@@ -3,6 +3,7 @@
 This repository automates monthly black-box scans for every Shodan managed asset by orchestrating Tenable cloud scans in evenly sized batches.
 
 ## Quick Start
+- **Install dependencies**: `pip install -r requirements.txt`.
 - **Prepare environment variables**: `SHODAN_API_KEY`, `TENABLE_ACCESS_KEY`, `TENABLE_SECRET_KEY`. Optional overrides include `TENABLE_TEMPLATE_UUID`, `TENABLE_SCANNER_ID`, `TENABLE_POLICY_ID`, `TENABLE_FOLDER_NAME`, and scheduler cadence variables documented in [`COMMANDS.md`](COMMANDS.md).
 - **(Optional) Refresh inventory**: `python3 inventory_builder.py`. This snapshots the current Shodan monitor alerts, expands CIDRs to manageable chunks, and persists them to `data/scan_state.db`.
 - **Launch scans**: within the 22:00–10:00 JST window, run `python3 scan_scheduler.py --limit <N>` to create and fire Tenable scans (defaults to folder `Ext_perimeter_autm8`). Use `--alert-name` / `--alert-id` to target a specific Shodan alert during demos.
