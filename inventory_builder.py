@@ -274,7 +274,7 @@ def main() -> None:
 
     api = shodan.Shodan(api_key)
 
-    with sqlite3.connect(db_path) as conn:
+    with sqlite3.connect(str(db_path)) as conn:
         ensure_db(conn)
         run_id = start_ingestion_run(conn)
 
