@@ -24,3 +24,4 @@
 - Run manual dry-run (`python3 scan_scheduler.py --dry-run --limit 1`) once credentials are confirmed to validate connectivity.
 - Configure deployment environment with `ENFORCE_WINDOW=false` until time restrictions need reinstating.
 - Commit and push repository updates (scheduler toggle, documentation, project plan) prior to redeploying on GCP.
+- Avoid hardcoded log paths; keep `LOG_DESTINATION=stdout` unless the log directory is managed by automation.

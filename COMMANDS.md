@@ -15,7 +15,7 @@ Set these before running any scripts (examples assume `bash` on macOS/Linux).
 | `SCAN_CONCURRENCY_LIMIT` | Max batches per scheduler invocation. | `20` |
 | `ENFORCE_WINDOW` | Enforce the 22:00–10:00 JST launch window when not set to `false`. | `true` |
 | `BATCH_IPV4_TARGET_PREFIX` / `BATCH_IPV6_TARGET_PREFIX` | Chunk size when expanding networks. | `24` / `64` |
-| `LOG_DESTINATION` | File to capture logs (use `stdout` to log to console). | `stdout` |
+| `LOG_DESTINATION` | File to capture logs; use an absolute path or leave unset/`stdout` to log to console. | `stdout` |
 | `LOG_LEVEL` | Python logging level (`INFO`, `DEBUG`, …). | `INFO` |
 
 Example export block:

@@ -14,12 +14,12 @@ except ImportError:  # pragma: no cover - Python < 3.9 fallback
 from tenable_client import TenableClient, TenableConfigError
 
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
-LOG_DESTINATION = os.getenv("LOG_DESTINATION", "stdout").lower()
+LOG_DESTINATION = os.getenv("LOG_DESTINATION", "stdout")
 basic_config_kwargs = {
     "level": LOG_LEVEL,
     "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
 }
-if LOG_DESTINATION != "stdout":
+if LOG_DESTINATION.lower() != "stdout":
     basic_config_kwargs["filename"] = LOG_DESTINATION
 logging.basicConfig(**basic_config_kwargs)
 logger = logging.getLogger("scan_scheduler")
