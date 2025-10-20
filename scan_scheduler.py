@@ -6,7 +6,10 @@ from dataclasses import dataclass
 from datetime import datetime, time, timezone
 from typing import Iterable, List, Optional, Sequence
 
-from zoneinfo import ZoneInfo
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:  # pragma: no cover - Python < 3.9 fallback
+    from backports.zoneinfo import ZoneInfo  # type: ignore
 
 from tenable_client import TenableClient, TenableConfigError
 
