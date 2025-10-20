@@ -25,6 +25,7 @@ JST = ZoneInfo("Asia/Tokyo")
 WINDOW_START = time(hour=22, minute=0)  # 22:00 JST
 WINDOW_END = time(hour=10, minute=0)  # 10:00 JST (next day)
 CONCURRENCY_LIMIT = int(os.getenv("SCAN_CONCURRENCY_LIMIT", "20"))
+ENFORCE_WINDOW = os.getenv("ENFORCE_WINDOW", "true").lower() != "false"
 
 DEFAULT_DB_PATH = os.getenv("SCAN_DB_PATH", "data/scan_state.db")
 
@@ -238,7 +239,9 @@ def main() -> None:
     args = parser.parse_args()
 
     now = datetime.now(timezone.utc)
-    if not args.dry_run and not within_window(now):
+    if not ENFORCE_WINDOW:
+        logger.info("Time window enforcement disabled; proceeding with scheduling")
+    if ENFORCE_WINDOW and not args.dry_run and not within_window(now):
         logger.info("Outside scanning window, exiting")
         return
 
